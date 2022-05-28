@@ -2,39 +2,68 @@
 
 //establishes variables
 int manticoreDistance;
-int round = 1;
-int cityHealth = 16;
-int manticoreHealth = 10;
-int cannonDamage = 1;
-int rangeGuess = -1;
-int turn = 1;
+int round;
+int cityHealth;
+int manticoreHealth;
+int cannonDamage;
+int rangeGuess;
+int turn;
+string keepPlaying = "Y";
 
-//Player 1 entry of the Manicore's distance from Consolas
-Console.WriteLine("Player 1, how far away from the city do you want to station the Manticore?");
-manticoreDistance = Convert.ToInt16(Console.ReadLine());
 
-//check that manticoreDistance is within the allowable range.
-while (manticoreDistance > 100 || manticoreDistance < 1)
+while (keepPlaying == "Y" || keepPlaying == "y")
 {
-    Console.WriteLine("That distance is out of range. It must be between 1-100. Please enter a distance between this range.");
+
+    round = 1;
+    cityHealth = 16;
+    manticoreHealth = 10;
+    cannonDamage = 1;
+    rangeGuess = -1;
+    turn = 1;
+
+
+    //Player 1 entry of the Manicore's distance from Consolas
+    Console.WriteLine("Player 1, how far away from the city do you want to station the Manticore?");
     manticoreDistance = Convert.ToInt16(Console.ReadLine());
-}
 
-Console.WriteLine("Player 2, it is your turn.");
-//play's game as long as there is health available
-while (manticoreHealth > 0 && cityHealth > 0)
-{
-    MagicCannon();
-    Status();
-    GuessEvaluation();
-}
+    //check that manticoreDistance is within the allowable range.
+    while (manticoreDistance > 100 || manticoreDistance < 1)
+    {
+        Console.WriteLine("That distance is out of range. It must be between 1-100. Please enter a distance between this range.");
+        manticoreDistance = Convert.ToInt16(Console.ReadLine());
+    }
 
-if (manticoreHealth <= 0)
-{
-    Console.WriteLine("The Manticore has been destroyed! The city of Consolas has been saved!");
+    Console.WriteLine("Player 2, it is your turn.");
+    //play's game as long as there is health available
+    while (manticoreHealth > 0 && cityHealth > 0)
+    {
+        MagicCannon();
+        Status();
+        GuessEvaluation();
+    }
+
+    if (manticoreHealth <= 0)
+    {
+        Console.WriteLine($"----------------------------------------------------------");
+        Console.WriteLine("The Manticore has been destroyed! The city of Consolas has been saved!");
+        Console.WriteLine($"----------------------------------------------------------");
+    }
+    else
+        Console.WriteLine($"----------------------------------------------------------");
+        Console.WriteLine("The city of Consolas has been lost...all hope is gone...you have disappointed everyone...especially your mother.");
+        Console.WriteLine($"----------------------------------------------------------");
+
+
+    Console.WriteLine("Woudl you like to play again? (Y/N)");
+    keepPlaying = Console.ReadLine();
+
+    if (keepPlaying != "y" || keepPlaying != "Y")
+    {
+
+    }
+    Console.WriteLine("Thank you for your service to Consolas!");
 }
-else
-    Console.WriteLine("The city of Consolas has been lost...all hope is gone...you have disappointed everyone...especially your mother.");
+Console.ReadKey();
 
 //provides the status and requests player 2's range guess
 void Status()
