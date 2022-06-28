@@ -20,11 +20,29 @@ while (keepPlaying == "Y" || keepPlaying == "y")
     cannonDamage = 1;
     rangeGuess = -1;
     turn = 1;
+    int playerCountSelection;
+    Random random = new Random();
 
+    //select number of players. 
+    Console.WriteLine("Will there be (1) or (2) players?");
 
-    //Player 1 entry of the Manicore's distance from Consolas
-    Console.WriteLine("Player 1, how far away from the city do you want to station the Manticore?");
-    manticoreDistance = Convert.ToInt16(Console.ReadLine());
+    //process the player count input
+    playerCountSelection = Convert.ToInt16(Console.ReadLine());
+    if (playerCountSelection == 1)
+    {
+        manticoreDistance = random.Next();
+        Console.WriteLine("Prepare yourself for defense...");
+        
+    }
+    else
+    {
+        Console.WriteLine("Player 1, how far away from the city do you want to station the Manticore?");
+        //Player 1 entry of the Manicore's distance from Consolas
+        manticoreDistance = Convert.ToInt16(Console.ReadLine());
+    }
+
+    
+
 
     //check that manticoreDistance is within the allowable range.
     while (manticoreDistance > 100 || manticoreDistance < 1)
@@ -50,8 +68,8 @@ while (keepPlaying == "Y" || keepPlaying == "y")
     }
     else
         Console.WriteLine($"----------------------------------------------------------");
-        Console.WriteLine("The city of Consolas has been lost...all hope is gone...you have disappointed everyone...especially your mother.");
-        Console.WriteLine($"----------------------------------------------------------");
+    Console.WriteLine("The city of Consolas has been lost...all hope is gone...you have disappointed everyone...especially your mother.");
+    Console.WriteLine($"----------------------------------------------------------");
 
 
     Console.WriteLine("Woudl you like to play again? (Y/N)");
